@@ -2,13 +2,36 @@
   box-sizing: border-box;
 }
 
+html,
 body {
-  font-size: $base-font-size;
-  -webkit-touch-callout: none;     // prevent callout to copy image, etc when tap to hold
-  -webkit-text-size-adjust: none;  // prevent webkit from resizing text to fit
-  -webkit-user-select: none;       // prevent copy paste, to allow, change 'none' to 'text'
+  height: 100%;
 }
 
-.page-container:not(.active) {
-  display: none;
+body {
+  margin: 0;
+  font-size: $base-font-size;
+  font-family: sans-serif;
+  background-color: #eee;
+}
+
+.button {
+  padding-right: 10px;
+  padding-left: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  max-width: $base-screen-width;
+  height: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #ddd;
+}
+
+.page-content {
+  display: flex;
+  flex-grow: 1;
 }

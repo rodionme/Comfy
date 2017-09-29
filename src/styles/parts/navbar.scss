@@ -1,0 +1,48 @@
+.navbar {
+  width: 100%;
+  padding: 20px $side-padding;
+  background-color: $light-green;
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    max-width: $base-screen-width;
+    height: 36px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+.add-article {
+  height: 100%;
+  font-size: 18px;
+  color: #f6f6f6;
+  background-color: $dark-green;
+}
+
+.searchbar {
+  .searchbar__form {
+    display: flex;
+    height: 100%;
+  }
+
+  &__field {
+    width: 300px;
+    height: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+    border: none;
+    font-size: 18px;
+    line-height: 36px;
+  }
+
+  &__button {
+    height: 100%;
+    margin-left: 10px;
+    font-size: 18px;
+    color: #f6f6f6;
+    background-color: $dark-green;
+  }
+}
+
+.search-article {}

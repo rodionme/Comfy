@@ -4,13 +4,10 @@
 @import "base/mixins";
 @import "base/colors";
 @import "base/general";
-@import "base/grid";
 
 // PARTS
+@import "parts/navbar";
 @import "parts/loader";
-
-@import "parts/header";
-@import "parts/footer";
 
 // PLUGINS
 
