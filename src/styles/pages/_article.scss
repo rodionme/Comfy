@@ -1,0 +1,16 @@
+.article-page {}
+
+.article {
+  overflow: auto;
+  padding: 20px $side-padding;
+
+  &__title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  p {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+}
