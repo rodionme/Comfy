@@ -11,7 +11,7 @@ body {
   margin: 0;
   font-size: $base-font-size;
   font-family: sans-serif;
-  background-color: #eee;
+  background-color: #ddd;
 }
 
 .button {
@@ -25,10 +25,12 @@ body {
   display: flex;
   flex-direction: column;
   max-width: $base-screen-width;
+  min-width: 650px;
   height: 100%;
   margin-right: auto;
   margin-left: auto;
-  background-color: #ddd;
+  background-color: #fff;
+  box-shadow: #aaa 0 0 10px 3px;
 }
 
 .page-content {
