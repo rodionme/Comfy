@@ -24,7 +24,14 @@ a {
   padding-left: 10px;
   border: none;
   cursor: pointer;
+  transition: .1s ease all;
+
+  &:hover {
+    opacity: .8;
+  }
 }
+
+.label {}
 
 .page-container {
   display: flex;

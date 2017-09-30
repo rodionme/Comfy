@@ -1,0 +1,19 @@
+extend _template
+
+block pageTitle
+  - var pageTitle = 'Create/Edit Article'
+block prepend body
+  body
+    section#page-edit-article.page-container.edit-article-page
+      include parts/_navbar
+
+      main.page-content
+        .edit-article
+          form.edit-article__form
+            label.label.edit-article__title-label(for="title") Название статьи
+            input.edit-article__title#title(type="text")
+
+            label.label.edit-article__content-label(for="content") Содержимое статьи
+            textarea.edit-article__content#content
+
+            button.button.edit-article__button(type="submit") Сохранить
