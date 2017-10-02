@@ -1,24 +1,80 @@
 <template lang="pug">
   #app
-    img(src="./assets/logo.png")
+    navbar
     router-view
 </template>
 
 
 <script>
+  import Navbar from '@/components/Navbar.vue'
+
   export default {
-    name: 'app'
+    name: 'app',
+    components: {
+      Navbar
+    },
   }
+
 </script>
 
 
 <style lang="scss">
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
+  * {
+    box-sizing: border-box;
   }
+
+  html,
+  body,
+  #app {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    font-size: $base-font-size;
+    line-height: 1.4;
+    font-family: sans-serif;
+    background-color: #ddd;
+  }
+
+  a {
+    color: #333;
+  }
+
+  .button {
+    padding-right: 10px;
+    padding-left: 10px;
+    border: none;
+    cursor: pointer;
+    transition: .1s ease all;
+
+    &:hover {
+      opacity: .8;
+    }
+  }
+
+  .label {}
+
+  .page-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: $base-screen-width;
+    min-width: 650px;
+    margin-right: auto;
+    margin-left: auto;
+    background-color: #fff;
+    box-shadow: #aaa 0 0 10px 3px;
+  }
+
+  .page-content {
+    display: flex;
+    flex-grow: 1;
+  }
+
+  #app {
+    display: flex;
+    flex-direction: column;
+  }
+
 </style>
