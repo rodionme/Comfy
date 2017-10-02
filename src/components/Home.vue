@@ -73,12 +73,31 @@
 
 
 <script>
+  const categories = [
+    { id: 1, title: 'География' },
+    { id: 2, title: 'Искусство' },
+    { id: 3, title: 'История' },
+    { id: 4, title: 'Музыка' },
+    { id: 5, title: 'Наука' },
+    { id: 6, title: 'Общество' },
+    { id: 7, title: 'Персоналии' },
+    { id: 8, title: 'Религия' },
+    { id: 9, title: 'Спорт' },
+    { id: 10, title: 'Техника' },
+    { id: 11, title: 'Философия' },
+  ];
+
+  const randomArticle = {};
+
   export default {
     name: 'Home',
     data () {
-      return {}
+      return {
+        categories,
+        randomArticle
+      };
     }
-  }
+  };
 
 </script>
 

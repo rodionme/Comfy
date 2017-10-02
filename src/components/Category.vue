@@ -36,9 +36,9 @@
   export default {
     name: 'Category',
     data () {
-      return {}
+      return {};
     }
-  }
+  };
 
 </script>
 

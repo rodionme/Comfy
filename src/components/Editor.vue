@@ -18,9 +18,9 @@
   export default {
     name: 'Editor',
     data () {
-      return {}
+      return {};
     }
-  }
+  };
 
 </script>
 

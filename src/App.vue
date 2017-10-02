@@ -6,14 +6,14 @@
 
 
 <script>
-  import Navbar from '@/components/Navbar.vue'
+  import Navbar from '@/components/Navbar.vue';
 
   export default {
     name: 'app',
     components: {
       Navbar
     },
-  }
+  };
 
 </script>
 
@@ -61,6 +61,7 @@
     width: 100%;
     max-width: $base-screen-width;
     min-width: 650px;
+    flex-grow: 1;
     margin-right: auto;
     margin-left: auto;
     background-color: #fff;

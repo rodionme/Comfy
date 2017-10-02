@@ -32,9 +32,10 @@
   export default {
     name: 'Article',
     data () {
-      return {}
+      return {};
     }
-  }
+  };
+
 </script>
 
 

@@ -1,12 +1,12 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from 'vue';
+import Router from 'vue-router';
 
-import Home from '@/components/Home.vue'
-import Category from '@/components/Category.vue'
-import Article from '@/components/Article.vue'
-import Editor from '@/components/Editor.vue'
+import Home from '@/components/Home.vue';
+import Category from '@/components/Category.vue';
+import Article from '@/components/Article.vue';
+import Editor from '@/components/Editor.vue';
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
@@ -17,4 +17,4 @@ export default new Router({
     { path: '/editor/:id', name: 'edit-article', component: Editor },
     { path: '*', redirect: { name: 'home' } },
   ]
-})
+});
