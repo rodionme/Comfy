@@ -11,11 +11,15 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "vue": "^2.4.2",
-    "vue-router": "^2.7.0"
+    "vue-axios": "^2.0.2",
+    "vue-router": "^2.7.0",
+    "vuex": "^2.4.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
+    "axios-mock-adapter": "^1.9.0",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^7.1.1",
