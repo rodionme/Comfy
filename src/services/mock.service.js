@@ -3,7 +3,7 @@ import MockAdapter from 'axios-mock-adapter';
 
 import CONSTANTS from '@/constants/App.constants';
 
-let mock = new MockAdapter(axios);
+let mock = new MockAdapter(axios, { delayResponse: 1000 });
 
 mock.onGet(`${CONSTANTS.API_URL}/categories`).reply(200, {
   categories: [
@@ -39,6 +39,22 @@ mock.onGet(`${CONSTANTS.API_URL}/category/1`).reply(200, {
       { id: 11, title: 'Статья одиннадцать' },
     ]
   }
+});
+
+mock.onGet(`${CONSTANTS.API_URL}/articles`, { params: { query: 'Статья' } }).reply(200, {
+  articles: [
+    { id: 1, title: 'Статья один' },
+    { id: 2, title: 'Статья два' },
+    { id: 3, title: 'Статья с очень-преочень длинным названием, которое вряд ли поместится на одной строчке без ее переноса на другую строку' },
+    { id: 4, title: 'Статья четыре' },
+    { id: 5, title: 'Статья пять' },
+    { id: 6, title: 'Статья шесть' },
+    { id: 7, title: 'Статья семь' },
+    { id: 8, title: 'Статья восемь' },
+    { id: 9, title: 'Статья девять' },
+    { id: 10, title: 'Статья десять' },
+    { id: 11, title: 'Статья одиннадцать' },
+  ]
 });
 
 mock.onGet(`${CONSTANTS.API_URL}/article/1`).reply(200, {
