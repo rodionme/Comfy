@@ -5,32 +5,12 @@
 
       .searchbar
         form.searchbar__form(action="/", method="GET")
-          input.searchbar__field(type="text", placeholder="Введите название статьи")
+          input.searchbar__field(v-model="searchQuery", @input="onSearchInput()", type="text", placeholder="Введите название статьи")
 
-          .searchbar__suggestions.search-suggestions.invisible
+          .searchbar__suggestions.search-suggestions(v-if="isSearchResultsOn")
             ul.search-suggestions__list
-              li.search-suggestions__item
-                a.search-suggestions__item-link(href="#") Статья один
-              li.search-suggestions__item
-                a.search-suggestions__item-link(href="#") Статья два
-              li.search-suggestions__item
-                a.search-suggestions__item-link(href="#") Статья с очень-преочень длинным названием, которое вряд ли поместится на одной строчке без ее переноса на другую строку
-              li.search-suggestions__item
-                a.search-suggestions__item-link(href="#") Статья четыре
-              li.search-suggestions__item
-                a.search-suggestions__item-link(href="#") Статья пять
-              li.search-suggestions__item
-                a.search-suggestions__item-link(href="#") Статья шесть
-              li.search-suggestions__item
-                a.search-suggestions__item-link(href="#") Статья семь
-              li.search-suggestions__item
-                a.search-suggestions__item-link(href="#") Статья восемь
-              li.search-suggestions__item
-                a.search-suggestions__item-link(href="#") Статья девять
-              li.search-suggestions__item
-                a.search-suggestions__item-link(href="#") Статья десять
-              li.search-suggestions__item
-                a.search-suggestions__item-link(href="#") Статья одиннадцать
+              li.search-suggestions__item(v-for="article of articles", :key="article.id")
+                router-link.search-suggestions__item-link(:to="{ name: 'article', params: { id: article.id }}") {{ article.title }}
 
           button.button.searchbar__button.search-article(type="submit") Искать
 
@@ -38,11 +18,38 @@
 
 
 <script>
+  import { FETCH_ARTICLES } from '@/store/actionTypes';
+
   export default {
     name: 'Navbar',
+
     data () {
-      return {};
-    }
+      return {
+        searchQuery: '',
+        isSearchResultsOn: false,
+      };
+    },
+
+    methods: {
+      onSearchInput () {
+        if (this.searchQuery.length > 1) {
+          // TODO: Add debounce
+          this.$store.dispatch(FETCH_ARTICLES, this.searchQuery)
+            .then(
+              () => { this.isSearchResultsOn = true },
+              () => { this.isSearchResultsOn = false }
+            );
+        } else {
+          this.isSearchResultsOn = false;
+        }
+      }
+    },
+
+    computed: {
+      articles () {
+        return this.$store.state.navbar.articles;
+      },
+    },
   };
 
 </script>
@@ -93,10 +100,6 @@
       top: 100%;
       left: 0;
       width: 300px;
-
-      &.invisible {
-        display: none;
-      }
     }
 
     &__button {
