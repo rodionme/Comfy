@@ -9,6 +9,20 @@ export default {
       });
   },
 
+  createArticle (article) {
+    return Vue.axios.post(`${CONSTANTS.API_URL}/article`, { article })
+      .catch((error) => {
+        throw new Error(error);
+      });
+  },
+
+  updateArticle (article) {
+    return Vue.axios.put(`${CONSTANTS.API_URL}/article/${article.id}`, { article })
+      .catch((error) => {
+        throw new Error(error);
+      });
+  },
+
   getLatestArticles () {
     return Vue.axios.get(`${CONSTANTS.API_URL}/latest-articles`)
       .catch((error) => {
@@ -21,5 +35,5 @@ export default {
       .catch((error) => {
         throw new Error(error);
       });
-  }
+  },
 };

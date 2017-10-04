@@ -83,6 +83,10 @@ mock.onGet(`${CONSTANTS.API_URL}/article/1`).reply(200, {
   }
 });
 
+mock.onPost(`${CONSTANTS.API_URL}/article`).reply(201, { article: { id: 1 } });
+
+mock.onPut(`${CONSTANTS.API_URL}/article/1`).reply(204, { article: { id: 1 } });
+
 mock.onGet(`${CONSTANTS.API_URL}/latest-articles`).reply(200, {
   latestArticles: [
     { id: 1, title: 'Статья один' },
