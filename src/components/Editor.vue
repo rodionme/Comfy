@@ -2,12 +2,12 @@
   section#page-edit-article.page-container.edit-article-page
     main.page-content
       .edit-article
-        form.edit-article__form
+        form.edit-article__form(@submit.prevent="onArticleSave")
           label.label.edit-article__title-label(for="title") Название статьи
-          input.edit-article__title#title(v-model="article.title", type="text")
+          input.edit-article__title#title(v-model="editedArticle.title", type="text")
 
           label.label.edit-article__content-label(for="content") Содержимое статьи
-          textarea.edit-article__content#content(v-model="article.content")
+          textarea.edit-article__content#content(v-model="editedArticle.content")
 
           button.button.edit-article__button(type="submit") Сохранить
 
@@ -16,32 +16,51 @@
 
 <script>
   import router from '@/router';
-  import { FETCH_ARTICLE } from '@/store/actionTypes';
+  import { FETCH_ARTICLE, ADD_ARTICLE, UPDATE_ARTICLE } from '@/store/actionTypes';
 
   export default {
     name: 'Editor',
 
     beforeMount () {
-      let articleId = this.getIdFromUrl();
-
-      if (articleId) {
-        this.$store.dispatch(FETCH_ARTICLE, articleId).catch(() => { router.push('/404') });
+      if (this.getIdFromUrl) {
+        this.$store.dispatch(FETCH_ARTICLE, this.getIdFromUrl).catch(() => { router.push('/404') });
       }
-    },
-
-    data () {
-      return {};
     },
 
     methods: {
-      getIdFromUrl () {
-        return window.location.pathname.split('/')[2];
-      }
+      onArticleSave () {
+        let actionType;
+
+        if (this.getIdFromUrl) {
+          actionType = UPDATE_ARTICLE;
+        } else {
+          actionType = ADD_ARTICLE;
+        }
+
+        this.$store.dispatch(actionType, this.editedArticle)
+          .then(response => {
+            if (response && response.data && response.data.article && response.data.article.id) {
+              this.$router.push(`/article/${response.data.article.id}`);
+            }
+          });
+      },
     },
 
     computed: {
+      getIdFromUrl () {
+        return window.location.pathname.split('/')[2];
+      },
+
       article () {
         return this.$store.state.article.article;
+      },
+
+      editedArticle () {
+        return {
+          id: this.article.id,
+          title: this.article.title,
+          content: this.article.content,
+        };
       },
     },
   };
