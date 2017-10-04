@@ -5,14 +5,14 @@
 
       .searchbar
         form.searchbar__form(@submit.prevent="onSearchFormSubmit", action="/", method="GET")
-          input.searchbar__field(v-model="searchQuery", type="text", placeholder="Введите название статьи")
+          input.searchbar__field(v-model="searchQuery", @blur="onSearchBlur", @focus="onSearchFocus", type="text", placeholder="Введите название статьи")
 
           .searchbar__suggestions.search-suggestions(v-if="isSearchResultsOn")
             ul.search-suggestions__list
               li.search-suggestions__item(v-for="article of articles", :key="article.id")
                 router-link.search-suggestions__item-link(:to="{ name: 'article', params: { id: article.id }}") {{ article.title }}
 
-          button.button.searchbar__button.search-article(type="submit") Искать
+          button.button.searchbar__button.search-article(@blur="onSearchBlur", type="submit") Искать
 
 </template>
 
@@ -42,7 +42,17 @@
             () => { this.isSearchResultsOn = true },
             () => { this.isSearchResultsOn = false }
           );
-      }
+      },
+
+      onSearchBlur () {
+        this.isSearchResultsOn = false;
+      },
+
+      onSearchFocus () {
+        if (this.articles.length) {
+          this.isSearchResultsOn = true;
+        }
+      },
     },
 
     computed: {
