@@ -10,13 +10,14 @@
 
 
 <script>
+  import router from '@/router';
   import { FETCH_ARTICLE } from '@/store/actionTypes';
 
   export default {
     name: 'Article',
 
     beforeMount () {
-      this.$store.dispatch(FETCH_ARTICLE, this.getIdFromUrl());
+      this.$store.dispatch(FETCH_ARTICLE, this.getIdFromUrl()).catch(() => { router.push('/404') });
     },
 
     data () {

@@ -15,6 +15,7 @@
 
 
 <script>
+  import router from '@/router';
   import { FETCH_ARTICLE } from '@/store/actionTypes';
 
   export default {
@@ -24,7 +25,7 @@
       let articleId = this.getIdFromUrl();
 
       if (articleId) {
-        this.$store.dispatch(FETCH_ARTICLE, articleId);
+        this.$store.dispatch(FETCH_ARTICLE, articleId).catch(() => { router.push('/404') });
       }
     },
 

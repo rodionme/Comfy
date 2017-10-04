@@ -13,13 +13,14 @@
 
 
 <script>
+  import router from '@/router';
   import { FETCH_CATEGORY } from '@/store/actionTypes';
 
   export default {
     name: 'Category',
 
     beforeMount () {
-      this.$store.dispatch(FETCH_CATEGORY, this.getIdFromUrl());
+      this.$store.dispatch(FETCH_CATEGORY, this.getIdFromUrl()).catch(() => { router.push('/404') });
     },
 
     data () {

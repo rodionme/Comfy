@@ -29,15 +29,16 @@
 
 
 <script>
+  import router from '@/router';
   import { FETCH_CATEGORIES, FETCH_RANDOM_ARTICLE, FETCH_LATEST_ARTICLES } from '../store/actionTypes';
 
   export default {
     name: 'Home',
 
     beforeMount () {
-      this.$store.dispatch(FETCH_CATEGORIES);
-      this.$store.dispatch(FETCH_RANDOM_ARTICLE);
-      this.$store.dispatch(FETCH_LATEST_ARTICLES);
+      this.$store.dispatch(FETCH_CATEGORIES).catch(() => { router.push('/404') });
+      this.$store.dispatch(FETCH_RANDOM_ARTICLE).catch(() => { router.push('/404') });
+      this.$store.dispatch(FETCH_LATEST_ARTICLES).catch(() => { router.push('/404') });
     },
 
     data () {
