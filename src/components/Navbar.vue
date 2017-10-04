@@ -1,11 +1,11 @@
 <template lang="pug">
   section.navbar
     .navbar__content
-      button.button.add-article(type="button") Добавить статью
+      button.button.add-article(@click="onAddArticleClick", type="button") Добавить статью
 
       .searchbar
-        form.searchbar__form(action="/", method="GET")
-          input.searchbar__field(v-model="searchQuery", @input="onSearchInput()", type="text", placeholder="Введите название статьи")
+        form.searchbar__form(@submit.prevent="onSearchFormSubmit", action="/", method="GET")
+          input.searchbar__field(v-model="searchQuery", type="text", placeholder="Введите название статьи")
 
           .searchbar__suggestions.search-suggestions(v-if="isSearchResultsOn")
             ul.search-suggestions__list
@@ -18,6 +18,7 @@
 
 
 <script>
+  import router from '@/router';
   import { FETCH_ARTICLES } from '@/store/actionTypes';
 
   export default {
@@ -31,17 +32,16 @@
     },
 
     methods: {
-      onSearchInput () {
-        if (this.searchQuery.length > 1) {
-          // TODO: Add debounce
-          this.$store.dispatch(FETCH_ARTICLES, this.searchQuery)
-            .then(
-              () => { this.isSearchResultsOn = true },
-              () => { this.isSearchResultsOn = false }
-            );
-        } else {
-          this.isSearchResultsOn = false;
-        }
+      onAddArticleClick () {
+        router.push('editor');
+      },
+
+      onSearchFormSubmit () {
+        this.$store.dispatch(FETCH_ARTICLES, this.searchQuery)
+          .then(
+            () => { this.isSearchResultsOn = true },
+            () => { this.isSearchResultsOn = false }
+          );
       }
     },
 
