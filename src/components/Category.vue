@@ -13,31 +13,30 @@
 
 
 <script>
-  const category = {
-    id: 1,
-    title: 'Название категории',
-    articles: [
-      { id: 1, title: 'Статья один' },
-      { id: 2, title: 'Статья два' },
-      { id: 3, title: 'Статья с очень-преочень длинным названием, которое вряд ли поместится на одной строчке без ее переноса на другую строку' },
-      { id: 4, title: 'Статья четыре' },
-      { id: 5, title: 'Статья пять' },
-      { id: 6, title: 'Статья шесть' },
-      { id: 7, title: 'Статья семь' },
-      { id: 8, title: 'Статья восемь' },
-      { id: 9, title: 'Статья девять' },
-      { id: 10, title: 'Статья десять' },
-      { id: 11, title: 'Статья одиннадцать' },
-    ]
-  };
+  import { FETCH_CATEGORY } from '@/store/actionTypes';
 
   export default {
     name: 'Category',
+
+    beforeMount () {
+      this.$store.dispatch(FETCH_CATEGORY, this.getIdFromUrl());
+    },
+
     data () {
-      return {
-        category
-      };
-    }
+      return {};
+    },
+
+    methods: {
+      getIdFromUrl () {
+        return window.location.hash.split('/')[2];
+      }
+    },
+
+    computed: {
+      category () {
+        return this.$store.state.category.category;
+      },
+    },
   };
 
 </script>
