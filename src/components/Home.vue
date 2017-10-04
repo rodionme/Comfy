@@ -36,9 +36,9 @@
     name: 'Home',
 
     beforeMount () {
-      this.$store.dispatch(FETCH_CATEGORIES).catch(() => { router.push('/404') });
-      this.$store.dispatch(FETCH_RANDOM_ARTICLE).catch(() => { router.push('/404') });
-      this.$store.dispatch(FETCH_LATEST_ARTICLES).catch(() => { router.push('/404') });
+      this.$store.dispatch(FETCH_CATEGORIES).catch(() => { router.replace('/404') });
+      this.$store.dispatch(FETCH_RANDOM_ARTICLE).catch(() => { router.replace('/404') });
+      this.$store.dispatch(FETCH_LATEST_ARTICLES).catch(() => { router.replace('/404') });
     },
 
     data () {

@@ -23,7 +23,7 @@
 
     beforeMount () {
       if (this.getIdFromUrl) {
-        this.$store.dispatch(FETCH_ARTICLE, this.getIdFromUrl).catch(() => { router.push('/404') });
+        this.$store.dispatch(FETCH_ARTICLE, this.getIdFromUrl).catch(() => { router.replace('/404') });
       }
     },
 

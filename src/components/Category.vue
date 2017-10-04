@@ -20,7 +20,7 @@
     name: 'Category',
 
     beforeMount () {
-      this.$store.dispatch(FETCH_CATEGORY, this.getIdFromUrl()).catch(() => { router.push('/404') });
+      this.$store.dispatch(FETCH_CATEGORY, this.getIdFromUrl()).catch(() => { router.replace('/404') });
     },
 
     data () {
