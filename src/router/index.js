@@ -9,6 +9,7 @@ import Editor from '@/components/Editor.vue';
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     { path: '/', name: 'home', component: Home },
     { path: '/category/:id', name: 'category', component: Category },

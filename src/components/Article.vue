@@ -25,7 +25,7 @@
 
     methods: {
       getIdFromUrl () {
-        return window.location.hash.split('/')[2];
+        return window.location.pathname.split('/')[2];
       }
     },
 
