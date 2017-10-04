@@ -4,10 +4,10 @@
       .edit-article
         form.edit-article__form
           label.label.edit-article__title-label(for="title") Название статьи
-          input.edit-article__title#title(type="text")
+          input.edit-article__title#title(v-model="article.title", type="text")
 
           label.label.edit-article__content-label(for="content") Содержимое статьи
-          textarea.edit-article__content#content
+          textarea.edit-article__content#content(v-model="article.content")
 
           button.button.edit-article__button(type="submit") Сохранить
 
@@ -15,11 +15,34 @@
 
 
 <script>
+  import { FETCH_ARTICLE } from '@/store/actionTypes';
+
   export default {
     name: 'Editor',
+
+    beforeMount () {
+      let articleId = this.getIdFromUrl();
+
+      if (articleId) {
+        this.$store.dispatch(FETCH_ARTICLE, articleId);
+      }
+    },
+
     data () {
       return {};
-    }
+    },
+
+    methods: {
+      getIdFromUrl () {
+        return window.location.hash.split('/')[2];
+      }
+    },
+
+    computed: {
+      article () {
+        return this.$store.state.article.article;
+      },
+    },
   };
 
 </script>
