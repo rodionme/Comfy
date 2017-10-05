@@ -1,7 +1,5 @@
-Comfy Test Job
+Mini Wiki (client part)
 =====================
-
-Mini-Wikipedia
 
 ## Build Setup
 
