@@ -16,14 +16,14 @@
 
 <script>
   import router from '@/router';
-  import { FETCH_ARTICLE, ADD_ARTICLE, UPDATE_ARTICLE } from '@/store/actionTypes';
+  import { FETCH_EDITED_ARTICLE, ADD_ARTICLE, UPDATE_ARTICLE } from '@/store/actionTypes';
 
   export default {
     name: 'Editor',
 
     beforeMount () {
       if (this.getSlugFromUrl) {
-        this.$store.dispatch(FETCH_ARTICLE, this.getSlugFromUrl).catch(() => { router.replace('/404') });
+        this.$store.dispatch(FETCH_EDITED_ARTICLE, this.getSlugFromUrl).catch(() => { router.replace('/404') });
       }
     },
 
@@ -52,7 +52,7 @@
       },
 
       article () {
-        return this.$store.state.article.article;
+        return this.$store.state.editor.article;
       },
 
       editedArticle () {
