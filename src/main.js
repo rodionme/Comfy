@@ -7,9 +7,8 @@ import VueAxios from 'vue-axios';
 import App from './App.vue';
 import router from './router';
 import store from './store';
-import mockService from './services/mock.service';
 
-Vue.use(VueAxios, axios, mockService);
+Vue.use(VueAxios, axios);
 
 Vue.config.productionTip = false;
 
