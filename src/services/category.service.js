@@ -9,8 +9,8 @@ export default {
       });
   },
 
-  getCategory (id) {
-    return Vue.axios.get(`${CONSTANTS.API_URL}/category/${id}`)
+  getCategory (slug) {
+    return Vue.axios.get(`${CONSTANTS.API_URL}/categories/${slug}`)
       .catch((error) => {
         throw new Error(error);
       });

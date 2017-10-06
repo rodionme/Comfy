@@ -10,6 +10,8 @@
 
 
 <script>
+  // TODO: Add Edit button
+
   import router from '@/router';
   import { FETCH_ARTICLE } from '@/store/actionTypes';
 
@@ -17,15 +19,11 @@
     name: 'Article',
 
     beforeMount () {
-      this.$store.dispatch(FETCH_ARTICLE, this.getIdFromUrl()).catch(() => { router.replace('/404') });
-    },
-
-    data () {
-      return {};
+      this.$store.dispatch(FETCH_ARTICLE, this.getSlugFromUrl()).catch(() => { router.replace('/404') });
     },
 
     methods: {
-      getIdFromUrl () {
+      getSlugFromUrl () {
         return window.location.pathname.split('/')[2];
       }
     },
@@ -44,6 +42,7 @@
   .article-page {}
 
   .article {
+    width: 100%;
     overflow: auto;
     padding: 20px $side-padding;
 

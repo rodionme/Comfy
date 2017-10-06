@@ -21,7 +21,7 @@ mock.onGet(`${CONSTANTS.API_URL}/categories`).reply(200, {
   ]
 });
 
-mock.onGet(`${CONSTANTS.API_URL}/category/1`).reply(200, {
+mock.onGet(`${CONSTANTS.API_URL}/categories/1`).reply(200, {
   category: {
     id: 1,
     title: 'Название категории',
@@ -57,7 +57,7 @@ mock.onGet(`${CONSTANTS.API_URL}/articles`, { params: { query: 'Статья' } 
   ]
 });
 
-mock.onGet(`${CONSTANTS.API_URL}/article/1`).reply(200, {
+mock.onGet(`${CONSTANTS.API_URL}/articles/1`).reply(200, {
   article: {
     id: 1,
     title: 'Днепр (город)',
@@ -83,12 +83,12 @@ mock.onGet(`${CONSTANTS.API_URL}/article/1`).reply(200, {
   }
 });
 
-mock.onPost(`${CONSTANTS.API_URL}/article`).reply(201, { article: { id: 1 } });
+mock.onPost(`${CONSTANTS.API_URL}/articles`).reply(201, { article: { id: 1 } });
 
-mock.onPut(`${CONSTANTS.API_URL}/article/1`).reply(204, { article: { id: 1 } });
+mock.onPut(`${CONSTANTS.API_URL}/articles/1`).reply(204, { article: { id: 1 } });
 
-mock.onGet(`${CONSTANTS.API_URL}/latest-articles`).reply(200, {
-  latestArticles: [
+mock.onGet(`${CONSTANTS.API_URL}/articles`, { params: { latest: 10 } }).reply(200, {
+  articles: [
     { id: 1, title: 'Статья один' },
     { id: 2, title: 'Статья два' },
     { id: 3, title: 'Статья с очень-преочень длинным названием, которое вряд ли поместится на одной строчке без ее переноса на другую строку' },
@@ -97,8 +97,8 @@ mock.onGet(`${CONSTANTS.API_URL}/latest-articles`).reply(200, {
   ]
 });
 
-mock.onGet(`${CONSTANTS.API_URL}/random-article`).reply(200, {
-  randomArticle: {
+mock.onGet(`${CONSTANTS.API_URL}/articles`, { params: { random: 1 } }).reply(200, {
+  article: {
     id: 1,
     title: 'Днепр (город)',
     content: `

@@ -22,8 +22,8 @@
     name: 'Editor',
 
     beforeMount () {
-      if (this.getIdFromUrl) {
-        this.$store.dispatch(FETCH_ARTICLE, this.getIdFromUrl).catch(() => { router.replace('/404') });
+      if (this.getSlugFromUrl) {
+        this.$store.dispatch(FETCH_ARTICLE, this.getSlugFromUrl).catch(() => { router.replace('/404') });
       }
     },
 
@@ -31,7 +31,7 @@
       onArticleSave () {
         let actionType;
 
-        if (this.getIdFromUrl) {
+        if (this.getSlugFromUrl) {
           actionType = UPDATE_ARTICLE;
         } else {
           actionType = ADD_ARTICLE;
@@ -39,15 +39,15 @@
 
         this.$store.dispatch(actionType, this.editedArticle)
           .then(response => {
-            if (response && response.data && response.data.article && response.data.article.id) {
-              this.$router.push(`/article/${response.data.article.id}`);
+            if (response && response.data && response.data.article && response.data.article.slug) {
+              this.$router.push(`/article/${response.data.article.slug}`);
             }
           });
       },
     },
 
     computed: {
-      getIdFromUrl () {
+      getSlugFromUrl () {
         return window.location.pathname.split('/')[2];
       },
 
@@ -57,6 +57,7 @@
 
       editedArticle () {
         return {
+          slug: this.article.slug,
           id: this.article.id,
           title: this.article.title,
           content: this.article.content,

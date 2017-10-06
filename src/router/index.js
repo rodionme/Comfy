@@ -13,10 +13,10 @@ export default new Router({
   mode: 'history',
   routes: [
     { path: '/', name: 'home', component: Home },
-    { path: '/category/:id', name: 'category', component: Category },
-    { path: '/article/:id', name: 'article', component: Article },
+    { path: '/category/:slug', name: 'category', component: Category },
+    { path: '/article/:slug', name: 'article', component: Article },
     { path: '/editor', name: 'create-article', component: Editor },
-    { path: '/editor/:id', name: 'edit-article', component: Editor },
+    { path: '/editor/:slug', name: 'edit-article', component: Editor },
     { path: '/404', name: 'page404', component: Page404 },
     { path: '*', redirect: { name: 'page404' } },
   ]

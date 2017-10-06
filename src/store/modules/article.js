@@ -7,8 +7,8 @@ export const state = {
 };
 
 export const actions = {
-  [FETCH_ARTICLE] ({ commit }, id) {
-    return ArticleService.getArticle(id)
+  [FETCH_ARTICLE] ({ commit }, slug) {
+    return ArticleService.getArticle(slug)
       .then(({ data }) => {
         commit(SET_ARTICLE, data.article);
       })

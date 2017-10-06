@@ -6,7 +6,7 @@
 
         ul.categories__list
           li.categories__item(v-for="category of categories", :key="category.id")
-            router-link.categories__item-link(:to="{ name: 'category', params: { id: category.id }}") {{ category.title }}
+            router-link.categories__item-link(:to="{ name: 'category', params: { slug: category.slug }}") {{ category.title }}
 
       section.index-page__articles
         .random-article-wrapper
@@ -14,7 +14,7 @@
 
           article.random-article-wrapper__article.random-article
             h4.random-article__title
-              router-link.random-article__link(v-if="randomArticle.id", :to="{ name: 'article', params: { id: randomArticle.id }}") {{ randomArticle.title }}
+              router-link.random-article__link(v-if="randomArticle.id", :to="{ name: 'article', params: { slug: randomArticle.slug }}") {{ randomArticle.title }}
 
             .random-article__content(v-html="randomArticle.content")
 
@@ -23,7 +23,7 @@
 
           ul.latest-articles__list
             li.latest-articles__item(v-for="article of latestArticles", :key="article.id")
-              router-link.latest-articles__item-link(:to="{ name: 'article', params: { id: article.id }}") {{ article.title }}
+              router-link.latest-articles__item-link(:to="{ name: 'article', params: { slug: article.slug }}") {{ article.title }}
 
 </template>
 
@@ -37,8 +37,8 @@
 
     beforeMount () {
       this.$store.dispatch(FETCH_CATEGORIES).catch(() => { router.replace('/404') });
-      this.$store.dispatch(FETCH_RANDOM_ARTICLE).catch(() => { router.replace('/404') });
-      this.$store.dispatch(FETCH_LATEST_ARTICLES).catch(() => { router.replace('/404') });
+      this.$store.dispatch(FETCH_RANDOM_ARTICLE, 1).catch(() => { router.replace('/404') });
+      this.$store.dispatch(FETCH_LATEST_ARTICLES, 10).catch(() => { router.replace('/404') });
     },
 
     data () {
@@ -69,6 +69,7 @@
       display: flex;
       flex-direction: column;
       overflow: auto;
+      width: 100%;
     }
   }
 

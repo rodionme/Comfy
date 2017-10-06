@@ -7,7 +7,7 @@
         .category__articles.category-articles
           ul.category-articles__list
             li.category-articles__item(v-for="article of category.articles", :key="article.id")
-              router-link.category-articles__item-link(:to="{ name: 'article', params: { id: article.id }}") {{ article.title }}
+              router-link.category-articles__item-link(:to="{ name: 'article', params: { slug: article.slug }}") {{ article.title }}
 
 </template>
 
@@ -20,7 +20,7 @@
     name: 'Category',
 
     beforeMount () {
-      this.$store.dispatch(FETCH_CATEGORY, this.getIdFromUrl()).catch(() => { router.replace('/404') });
+      this.$store.dispatch(FETCH_CATEGORY, this.getSlugFromUrl()).catch(() => { router.replace('/404') });
     },
 
     data () {
@@ -28,7 +28,7 @@
     },
 
     methods: {
-      getIdFromUrl () {
+      getSlugFromUrl () {
         return window.location.pathname.split('/')[2];
       }
     },

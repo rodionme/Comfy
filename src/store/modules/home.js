@@ -20,20 +20,20 @@ export const actions = {
       });
   },
 
-  [FETCH_RANDOM_ARTICLE] ({ commit }) {
-    return ArticleService.getRandomArticle()
+  [FETCH_RANDOM_ARTICLE] ({ commit }, random) {
+    return ArticleService.getRandomArticle(random)
       .then(({ data }) => {
-        commit(SET_RANDOM_ARTICLE, data.randomArticle);
+        commit(SET_RANDOM_ARTICLE, data.article);
       })
       .catch((error) => {
         throw new Error(error);
       });
   },
 
-  [FETCH_LATEST_ARTICLES] ({ commit }) {
-    return ArticleService.getLatestArticles()
+  [FETCH_LATEST_ARTICLES] ({ commit }, latest) {
+    return ArticleService.getLatestArticles(latest)
       .then(({ data }) => {
-        commit(SET_LATEST_ARTICLES, data.latestArticles);
+        commit(SET_LATEST_ARTICLES, data.articles);
       })
       .catch((error) => {
         throw new Error(error);

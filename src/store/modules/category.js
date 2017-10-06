@@ -7,8 +7,8 @@ export const state = {
 };
 
 export const actions = {
-  [FETCH_CATEGORY] ({ commit }, id) {
-    return CategoryService.getCategory(id)
+  [FETCH_CATEGORY] ({ commit }, slug) {
+    return CategoryService.getCategory(slug)
       .then(({ data }) => {
         commit(SET_CATEGORY, data.category);
       })
