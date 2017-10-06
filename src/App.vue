@@ -1,7 +1,7 @@
 <template lang="pug">
   #app
     navbar
-    router-view
+    router-view(:key="$route.fullPath")
 </template>
 
 
@@ -10,6 +10,7 @@
 
   export default {
     name: 'app',
+
     components: {
       Navbar
     },
