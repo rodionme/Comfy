@@ -1,6 +1,8 @@
 Mini Wiki (client part)
 =====================
 
+### VueJS, Vuex, ES6, Sass, Pug
+
 ## Build Setup
 
 ``` bash
