@@ -37,7 +37,7 @@
 
     beforeMount () {
       this.$store.dispatch(FETCH_CATEGORIES).catch(() => { router.replace('/404') });
-      this.$store.dispatch(FETCH_RANDOM_ARTICLE, 1).catch(() => { router.replace('/404') });
+      this.$store.dispatch(FETCH_RANDOM_ARTICLE, 'true').catch(() => { router.replace('/404') });
       this.$store.dispatch(FETCH_LATEST_ARTICLES, 10).catch(() => { router.replace('/404') });
     },
 
@@ -115,11 +115,14 @@
     &__title {
       margin-top: 20px;
       margin-bottom: 20px;
+      padding-left: 16px;
     }
 
     &__link {}
 
     &__content {
+      padding-left: 16px;
+
       p {
         margin-top: 16px;
         margin-bottom: 16px;

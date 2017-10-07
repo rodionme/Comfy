@@ -12,8 +12,6 @@
 
 
 <script>
-  // TODO: Add Category selector
-
   import router from '@/router';
   import { FETCH_ARTICLE } from '@/store/actionTypes';
 
