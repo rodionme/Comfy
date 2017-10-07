@@ -2,7 +2,9 @@
   section#page-article.page-container.article-page
     main.page-content
       article.article
-        h1.article__title {{ article.title }}
+        header.article__header
+          h1.article__title {{ article.title }}
+          button.button.edit-article-button(@click="onEditArticleClick", type="button") Отредактировать
 
         .article__content(v-html="article.content")
 
@@ -10,7 +12,7 @@
 
 
 <script>
-  // TODO: Add Edit button
+  // TODO: Add Category selector
 
   import router from '@/router';
   import { FETCH_ARTICLE } from '@/store/actionTypes';
@@ -25,7 +27,11 @@
     methods: {
       getSlugFromUrl () {
         return window.location.pathname.split('/')[2];
-      }
+      },
+
+      onEditArticleClick () {
+        router.push({ name: 'edit-article', params: { slug: this.article.slug } });
+      },
     },
 
     computed: {
@@ -41,10 +47,23 @@
 <style lang="scss">
   .article-page {}
 
+  .edit-article-button {
+    height: 36px;
+    font-size: 18px;
+    color: #f6f6f6;
+    background-color: $dark-purple;
+  }
+
   .article {
     width: 100%;
     overflow: auto;
     padding: 20px $side-padding;
+
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
     &__title {
       margin-top: 20px;
