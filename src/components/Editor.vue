@@ -6,6 +6,11 @@
           label.label.edit-article__title-label(for="title") Название статьи
           input.edit-article__title#title(v-model="editedArticle.title", type="text")
 
+          label.label.edit-article__category-label(for="title") Категория статьи
+          select.edit-article__category(v-model="editedArticle.category")
+            option(disabled, value="") Выберите один из вариантов
+            option(v-for="category of categories", v-bind:value="category.slug") {{ category.title }}
+
           label.label.edit-article__content-label(for="content") Содержимое статьи
           textarea.edit-article__content#content(v-model="editedArticle.content")
 
@@ -16,12 +21,14 @@
 
 <script>
   import router from '@/router';
-  import { FETCH_EDITED_ARTICLE, ADD_ARTICLE, UPDATE_ARTICLE } from '@/store/actionTypes';
+  import { FETCH_CATEGORIES, FETCH_EDITED_ARTICLE, ADD_ARTICLE, UPDATE_ARTICLE } from '@/store/actionTypes';
 
   export default {
     name: 'Editor',
 
     beforeMount () {
+      this.$store.dispatch(FETCH_CATEGORIES).catch(() => { router.replace('/404') });
+
       if (this.getSlugFromUrl) {
         this.$store.dispatch(FETCH_EDITED_ARTICLE, this.getSlugFromUrl).catch(() => { router.replace('/404') });
       }
@@ -51,6 +58,10 @@
         return window.location.pathname.split('/')[2];
       },
 
+      categories () {
+        return this.$store.state.home.categories;
+      },
+
       article () {
         return this.$store.state.editor.article;
       },
@@ -60,6 +71,7 @@
           slug: this.article.slug,
           id: this.article.id,
           title: this.article.title,
+          category: this.article.category || '',
           content: this.article.content,
         };
       },
@@ -97,6 +109,22 @@
       padding-right: 10px;
       padding-left: 10px;
       border: 1px solid #ccc;
+      font-size: 18px;
+      line-height: 36px;
+    }
+
+    &__category-label {
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    &__category {
+      width: 100%;
+      height: 36px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      padding-right: 10px;
+      padding-left: 10px;
       font-size: 18px;
       line-height: 36px;
     }
